@@ -1,11 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inicio - Noticias Espaciales</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f171d; /* Color de fondo azul oscuro */
+            color: #fff; /* Color de texto blanco */
+        }
+        header {
+            background-color: #0f1347; /* Color de fondo del encabezado negro */
+            color: #fff;
+            text-align: center;
+            padding: 50px 0;
+        }
+        header h1 {
+            font-size: 48px; /* Tamaño de fuente grande */
+            margin: 0; /* Elimina el margen superior e inferior del encabezado */
+        }
+        nav {
+            border-top: 2px solid #fff; /* Línea divisoria blanca en la parte superior */
+            border-bottom: 2px solid #fff; /* Línea divisoria blanca en la parte inferior */
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+            border-bottom: 2px solid transparent; /* Borde inferior transparente por defecto */
+        }
+        nav ul li:last-child {
+            margin-right: 0; /* Elimina el margen derecho del último elemento de la lista */
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff; /* Color de texto blanco */
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: #ccc; /* Color de texto gris claro al pasar el mouse */
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        footer {
+            background-color: #0e293d; /* Color de fondo del pie de página negro */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    
+    <header>
+        <h1>Noticias Espaciales</h1>
+    </header>
+    <nav>
+        <ul>
+            <li id="inicio"><a href="inicio.html">Inicio</a></li>
+            <li id="articulos"><a href="articulos.html">Artículos</a></li>
+            <li id="galeria"><a href="galeria.html">Galería</a></li>
+            <li id="acerca-de"><a href="acerca_de.html">Acerca de</a></li>
+        </ul>
+    </nav>
+    <main>
+        <p>Contenido principal de la página.</p>
+    </main>
+    <footer>
+        <p>&copy; Noticias del Espacio</p>
+    </footer>
+
+    <script>
+        // Función para manejar el clic en los enlaces
+        function handleLinkClick(event) {
+            // Obtenemos el id del elemento padre <li>
+            var itemId = event.target.parentElement.id;
+            
+            // Verificamos si el id del elemento padre es válido
+            if (itemId) {
+                // Intentamos obtener los datos almacenados previamente
+                var visitedLinks = localStorage.getItem('visitedLinks');
+                if (!visitedLinks) {
+                    // Si no hay datos almacenados, creamos un objeto vacío
+                    visitedLinks = {};
+                } else {
+                    // Si hay datos almacenados, convertimos la cadena JSON en un objeto JavaScript
+                    visitedLinks = JSON.parse(visitedLinks);
+                }
+                
+                // Marcamos el enlace como visitado en el objeto
+                visitedLinks[itemId] = true;
+                
+                // Convertimos el objeto JavaScript en una cadena JSON y lo almacenamos en el almacenamiento local
+                localStorage.setItem('visitedLinks', JSON.stringify(visitedLinks));
+            }
+        }
+
+        // Agregar un event listener a todos los enlaces <a> dentro de la lista <ul>
+        var links = document.querySelectorAll('nav ul li a');
+        links.forEach(function(link) {
+            link.addEventListener('click', handleLinkClick);
+        });
+    </script>
+    <main>
+        <p>Bienvenidos a "NewsWave", tu fuente confiable y completa de noticias en línea. En un mundo en constante cambio y evolución, estar informado es más importante que nunca. En NewsWave, nos comprometemos a proporcionarte una cobertura periodística imparcial, exhaustiva y oportuna de los eventos que impactan a nivel local, nacional e internacional.
+
+            Nuestro equipo de periodistas y analistas está dedicado a brindarte una visión objetiva y contextualizada de los acontecimientos más relevantes del día. Desde política y economía hasta ciencia, tecnología, cultura y deportes, cubrimos una amplia gama de temas para satisfacer tus intereses y mantenerte al tanto de lo que realmente importa.
+            
+            En NewsWave, creemos en la importancia de la diversidad de opiniones y en la necesidad de ofrecer una plataforma abierta para el debate y la discusión. Por eso, no solo encontrarás reportajes informativos, sino también análisis profundos, entrevistas exclusivas y opiniones variadas que te ayudarán a formar una visión más completa y fundamentada de los temas que nos afectan a todos.</p>
+        <!-- Puedes agregar más contenido aquí -->
+    </main>
+    <footer>
+        <p>&copy; Noticias Espaciales</p>
+    </footer>
+   
 </body>
-</html>))))(&(&/)/&)(/&)
+</html>
+

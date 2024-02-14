@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias del Espacio</title>
+
+    <link rel="stylesheet" href="pdcc.min.css">
+<script charset="utf-8" src="pdcc.min.js"></script>
+<script type="text/javascript">
+PDCookieConsent.config({
+"defaultLang" : "es",
+"brand": {
+"dev" : false,
+"name": "Pruebas",
+"url" : "https://localhost",
+"websiteOwner" : "pruebas"
+},
+"cookiePolicyLink": "http://localhost/cookies.php",
+"hideModalIn": ["http://localhost/cookies.php"],
+"styles": {
+"primaryButton": {
+"bgColor" : "#A1FFA1",
+"txtColor": "#036900"
+},
+"secondaryButton": {
+"bgColor" : "#EEEEEE",
+"txtColor": "#333333"
+}
+}
+});
+</script>
+
+
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header, nav, main, footer {
+            padding: 20px;
+        }
+
+        header {
+            background-color: #032c6b;
+            color: #fff;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #a11d1d;
+        }
+
+        nav ul li a:hover {
+            color: #02357c;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        article {
+            flex-basis: 45%;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        article img {
+        max-width: 100%;
+        height: auto;
+        }
+
+        footer {
+            background-color: #1090cc;
+            color: #fff;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 8px 0;
+        }
+
+        .ultimo-elemento {
+    margin-bottom: 85px; 
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Noticias del Espacio</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="articulos.html">Artículos</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="acerca_de.html">Acerca de</a></li>
+        </ul>
+    </nav>
+    <main>
+        <article>
+            <h2><a href="noticia1.html">TCientíficos Optimistas: Llegaremos a Marte en un Futuro Próximo!!!</a></h2>
+            <p>En una entrevista exclusiva con destacados científicos de la Agencia Espacial Internacional (AEI), se ha revelado que existe un consenso creciente dentro de la comunidad científica sobre la posibilidad de llegar a Marte en un futuro cercano... </p>
+                        <a href="noticia1.html" class="button">Leer más</a>
+            <img src="foto2.jpg" alt="Imagen del espacio">
+
+        </article>
+        <article>
+            <h2><a href="noticia2.html">Descubrimiento Revolucionario: Confirmado el Agua en la Luna</a></h2>
+            <p>En un emocionante giro de los acontecimientos, un equipo internacional de científicos ha confirmado el descubrimiento de agua en la Luna, desafiando las concepciones previas sobre la composición de nuestro satélite natural. Esta revelación, resultado de años de investigación y análisis meticuloso de datos recopilados por varias misiones espaciales...</p>
+            <a href="noticia2.html" class="button">Leer más</a>
+            <img src="foto1.jpg" alt="Imagen del espacio">
+            
+        </article>
+    <div class="ultimo-elemento">
+    <video controls width="600">
+        <source src="Una vuelta completa a la Tierra desde el ESPACIO.mp4" type="video/mp4">
+        
+    </video>
+      </div>
+
+    </main>
+    <footer>
+        <p>&copy; Noticias del Espacio POO</p>
+    </footer>
+
+
+    <script>
+        // Función para establecer una cookie
+        function setCookie(nombre, valor, dias) {
+            var fecha = new Date();
+            fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+            var expira = "expires=" + fecha.toUTCString();
+            document.cookie = nombre + "=" + valor + ";" + expira + ";path=/";
+        }
+
+        // Función para obtener el valor de una cookie
+        function getCookie(nombre) {
+            var nombreCookie = nombre + "=";
+            var cookies = decodeURIComponent(document.cookie).split(';');
+            for(var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.indexOf(nombreCookie) == 0) {
+                    return cookie.substring(nombreCookie.length, cookie.length);
+                }
+            }
+            return "";
+        }
+
+        // Función para manejar el evento click de los hipervínculos
+        function registrarVisita(event) {
+            var enlace = event.target.href;
+            if (enlace) {
+                var visitas = getCookie("visitas") ? JSON.parse(getCookie("visitas")) : {};
+                visitas[enlace] = (visitas[enlace] || 0) + 1;
+                setCookie("visitas", JSON.stringify(visitas), 30);
+            }
+        }
+
+        // Agregar un event listener a los hipervínculos de las noticias
+        var enlacesNoticias = document.querySelectorAll("article a.button");
+        for (var i = 0; i < enlacesNoticias.length; i++) {
+            enlacesNoticias[i].addEventListener("click", registrarVisita);
+        }
+    </script>
+    
+</body>
+</html>
